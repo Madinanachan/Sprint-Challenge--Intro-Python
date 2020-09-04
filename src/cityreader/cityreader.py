@@ -1,5 +1,13 @@
+import csv
+import pandas as pd
 # Create a class to hold a city location. Call the class "City". It should have
 # fields for name, lat and lon (representing latitude and longitude).
+class city:
+    def __init__(self,name,lat,lon):
+        self.name=name
+        self.lat=lat
+        self.lon=lon;
+
 
 
 # We have a collection of US cities with population over 750,000 stored in the
@@ -16,13 +24,22 @@
 # should not be loaded into a City object.
 cities = []
 
+#I have no idea why I couldnt get csv module to load, kept getting an error but I know pandas-- hope thats ok
+df=pd.read_csv(r"C:\Users\maric\Source\Repos\Sprint-Challenge--Intro-Python\src\cityreader\cities.csv")
+
+
 def cityreader(cities=[]):
+   for row in df:
+       cityclass=city(row['City'],int(row['Lat']),int(row['Lon']))
+       cities.append(cityclass);
+   
+
   # TODO Implement the functionality to read from the 'cities.csv' file
   # Ensure that the lat and lon valuse are all floats
   # For each city record, create a new City instance and add it to the 
   # `cities` list
     
-    return cities
+    #return cities
 
 cityreader(cities)
 
