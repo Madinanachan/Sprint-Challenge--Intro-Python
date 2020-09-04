@@ -36,8 +36,8 @@ def cityreader(cities=[]):
         reader = csv.reader(f)
         next(reader)#to get rid of first row
         for row in reader:
-            cities.append(city(row[0], float(row[3]), float(row[4])))
-            return cities;#Seems to be only grabbing one?
+            cities.append(city(row[0], float(row[3]), float(row[4])));
+        return cities;#Seems to be only grabbing one? Fixed it-- Return was in wrong place
 
 
    
@@ -52,7 +52,6 @@ cityreader(cities)
 
 # Print the list of cities (name, lat, lon), 1 record per line.
 for c in cities:
-    print(c)
     print(c.name, c.lat, c.lon)
 
 # STRETCH GOAL!
