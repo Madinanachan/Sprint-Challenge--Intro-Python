@@ -24,28 +24,36 @@ class city:
 # should not be loaded into a City object.
 cities = []
 
-#I have no idea why I couldnt get csv module to load, kept getting an error but I know pandas-- hope thats ok
-df=pd.read_csv(r"C:\Users\maric\Source\Repos\Sprint-Challenge--Intro-Python\src\cityreader\cities.csv")
+#df=pd.read_csv(r"C:\Users\maric\Source\Repos\Sprint-Challenge--Intro-Python\src\cityreader\cities.csv")
+#df1=df[['city','lat','lng']]
+#print(df1)
+#print(df1['lat'].dtype)#this checked that the values are in
+
 
 
 def cityreader(cities=[]):
-   for row in df:
-       cityclass=city(row['City'],int(row['Lat']),int(row['Lon']))
-       cities.append(cityclass);
+     with open(r"C:\Users\maric\Source\Repos\Sprint-Challenge--Intro-Python\src\cityreader\cities.csv") as f:
+        reader = csv.reader(f)
+        next(reader)#to get rid of first row
+        for row in reader:
+            cities.append(city(row[0], float(row[3]), float(row[4])))
+            return cities;#Seems to be only grabbing one?
+
+
    
 
   # TODO Implement the functionality to read from the 'cities.csv' file
   # Ensure that the lat and lon valuse are all floats
   # For each city record, create a new City instance and add it to the 
   # `cities` list
-    
-    #return cities
+
 
 cityreader(cities)
 
 # Print the list of cities (name, lat, lon), 1 record per line.
 for c in cities:
     print(c)
+    print(c.name, c.lat, c.lon)
 
 # STRETCH GOAL!
 #
